@@ -321,8 +321,20 @@ function handleCounsellingSubmit(event) {
   const slot = document.getElementById('c-slot').value;
   
   if (name && email && slot) {
+    // Format the date/time string nicely
+    let formattedSlot = slot;
+    try {
+      const dateObj = new Date(slot);
+      if (!isNaN(dateObj)) {
+        const options = { weekday: 'long', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+        formattedSlot = dateObj.toLocaleDateString('en-US', options) + ' IST';
+      }
+    } catch (e) {
+      console.error(e);
+    }
+
     // Populate details
-    document.getElementById('confirmed-slot').innerText = slot;
+    document.getElementById('confirmed-slot').innerText = formattedSlot;
     document.getElementById('confirmed-email').innerText = email;
     
     // Hide form and show success banner

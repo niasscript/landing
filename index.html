@@ -673,14 +673,8 @@
                   <input type="email" id="c-email" required placeholder="e.g. aditi@gmail.com">
                 </div>
                 <div class="form-group">
-                  <label for="c-slot">Preferred Date & Slot</label>
-                  <select id="c-slot" required>
-                    <option value="" disabled selected>Select a Date & Time</option>
-                    <option value="Aug 14 - 10:00 AM">Friday, Aug 14 at 10:00 AM IST</option>
-                    <option value="Aug 14 - 03:00 PM">Friday, Aug 14 at 03:00 PM IST</option>
-                    <option value="Aug 15 - 11:00 AM">Saturday, Aug 15 at 11:00 AM IST</option>
-                    <option value="Aug 16 - 02:00 PM">Sunday, Aug 16 at 02:00 PM IST</option>
-                  </select>
+                  <label for="c-slot">Preferred Date & Time</label>
+                  <input type="datetime-local" id="c-slot" required>
                 </div>
               </div>
               <button type="submit" class="btn btn-primary btn-booking">Confirm Booking <i class="fa-solid fa-calendar-check"></i></button>
