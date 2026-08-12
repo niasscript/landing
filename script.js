@@ -2,6 +2,45 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ==========================================
+     LIGHT/DARK THEME TOGGLER
+     ========================================== */
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  
+  if (themeToggleBtn) {
+    // Check local storage for theme settings
+    const savedTheme = localStorage.getItem('theme');
+    const isLightMode = savedTheme === 'light';
+    
+    if (isLightMode) {
+      document.body.classList.add('light-theme');
+      updateThemeIcon(true);
+    } else {
+      document.body.classList.remove('light-theme');
+      updateThemeIcon(false);
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('light-theme');
+      const lightActive = document.body.classList.contains('light-theme');
+      
+      // Save setting
+      localStorage.setItem('theme', lightActive ? 'light' : 'dark');
+      updateThemeIcon(lightActive);
+    });
+  }
+
+  function updateThemeIcon(isLight) {
+    const icon = themeToggleBtn.querySelector('i');
+    if (icon) {
+      if (isLight) {
+        icon.className = 'fa-solid fa-sun';
+      } else {
+        icon.className = 'fa-solid fa-moon';
+      }
+    }
+  }
+
+  /* ==========================================
      MOBILE NAVIGATION ACTIVE SYNC
      ========================================== */
   const sections = document.querySelectorAll('section');
@@ -52,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', () => {
     if (window.scrollY > 40) {
       header.style.padding = '0.2rem 0';
-      header.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.6)';
+      header.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.08)';
       header.style.background = 'var(--color-bg-deep)';
     } else {
       header.style.padding = '0';
@@ -241,7 +280,7 @@ function showResults() {
   
   if (alignmentPercent >= 80) {
     labelElement.innerText = "High Alignment";
-    labelElement.style.color = "var(--color-accent-orange)";
+    labelElement.style.color = "var(--color-accent-green)";
     feedbackElement.innerHTML = `
       <strong>Excellent! You show high compatibility with a Civil Services career.</strong><br><br>
       You have a strong affinity for public impact, administrative leadership, and problem-solving. You are intrinsically motivated to understand society and make decisions under pressure. 
@@ -249,7 +288,7 @@ function showResults() {
     `;
   } else if (alignmentPercent >= 50) {
     labelElement.innerText = "Moderate Alignment";
-    labelElement.style.color = "var(--color-accent-blue)";
+    labelElement.style.color = "var(--color-accent-orange)";
     feedbackElement.innerHTML = `
       <strong>Good potential, but you should proceed with caution and reflection.</strong><br><br>
       You value leadership and want to make a difference, but you may have reservations about the intense preparation requirements, remote postings, or public scrutiny. 
