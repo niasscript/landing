@@ -330,6 +330,12 @@ header {
   color: var(--color-text-secondary);
 }
 
+.header-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
 .desktop-nav ul {
   display: flex;
   list-style: none;
@@ -1498,7 +1504,7 @@ footer p {
   }
 
   .header-container {
-    justify-content: center; /* Center logo title on mobile top-bar */
+    justify-content: space-between;
   }
 
   /* Mobile App Bottom Tab Bar */
