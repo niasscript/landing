@@ -1243,6 +1243,7 @@ tr:hover td {
 }
 
 .form-group input, .form-group select {
+  width: 100%;
   background: var(--color-bg-surface);
   border: 1px solid var(--color-border-primary);
   padding: 0.7rem 1rem;
@@ -1684,6 +1685,10 @@ footer p {
 
   .quiz-container {
     padding: 1.5rem;
+  }
+
+  .counselling-booking-box {
+    padding: 1.25rem;
   }
 
   .reality-grid {
