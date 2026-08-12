@@ -1477,6 +1477,10 @@ footer p {
   color: var(--color-text-muted) !important;
 }
 
+.mobile-bottom-nav {
+  display: none;
+}
+
 /* ==========================================
    RESPONSIVE DESIGN (MEDIA QUERIES) & MOBILE APP STYLING
    ========================================== */
@@ -1505,6 +1509,16 @@ footer p {
 
   .header-container {
     justify-content: space-between;
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .hero {
+    padding: 80px 0 40px 0;
+  }
+
+  .intro, .reasons, .services, .comparison, .quiz-section, .reality, .cta {
+    padding: 40px 0;
   }
 
   /* Mobile App Bottom Tab Bar */
@@ -1726,5 +1740,14 @@ footer p {
     content: "Conventional: ";
     font-weight: 700;
     color: var(--color-text-secondary);
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-title {
+    font-size: 1rem;
+  }
+  .logo-subtitle {
+    display: none;
   }
 }
