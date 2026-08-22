@@ -1933,8 +1933,8 @@ footer p {
   .hero-image-side {
     order: -1;
     display: block;
-    max-width: 260px;
-    margin: 0 auto 0.75rem auto;
+    max-width: 340px;
+    margin: 0 auto 1.25rem auto;
   }
 
   .section-header h2, .reality-card h2, .cta-container h2 {
