@@ -1830,6 +1830,34 @@ footer p {
     padding: 1.5rem;
   }
 
+  .reality-grid-large {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+
+  .r-card {
+    padding: 0.85rem;
+  }
+
+  .r-card:last-child {
+    grid-column: span 2;
+  }
+
+  .r-icon {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .r-card h3 {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .r-card p {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
   .cta-container {
     padding: 2.5rem 1.2rem;
   }
