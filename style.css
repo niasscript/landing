@@ -1902,39 +1902,39 @@ footer p {
 
   /* Hero adjustments for snug screens */
   .hero {
-    padding: 60px 0 20px 0;
+    padding: 70px 0 30px 0;
   }
 
   .hero-badge {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
   }
 
   .hero-split {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 1.5rem;
   }
 
   .hero h1 {
-    font-size: 1.8rem;
-    margin-bottom: 0.35rem;
+    font-size: 2.0rem;
+    margin-bottom: 0.5rem;
     line-height: 1.3;
   }
   
   .hero-tagline {
-    font-size: 0.95rem;
-    margin-bottom: 0.75rem;
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
   }
 
   .cta-buttons {
-    gap: 0.4rem;
+    gap: 0.5rem;
     margin-top: 0.25rem;
   }
 
   .hero-image-side {
     order: -1;
     display: block;
-    max-width: 180px;
-    margin: 0 auto 0.5rem auto;
+    max-width: 260px;
+    margin: 0 auto 0.75rem auto;
   }
 
   .section-header h2, .reality-card h2, .cta-container h2 {
