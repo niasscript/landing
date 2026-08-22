@@ -1901,46 +1901,21 @@ footer p {
   }
 
   /* Hero adjustments for snug screens */
-  .hero {
-    padding: 55px 0 15px 0;
-  }
-
-  .hero-badge {
-    margin-bottom: 0.5rem;
-  }
-
   .hero-split {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
   .hero h1 {
-    font-size: 1.6rem;
-    margin-bottom: 0.35rem;
-    line-height: 1.25;
+    font-size: 2.2rem;
   }
   
   .hero-tagline {
-    font-size: 0.88rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .cta-buttons {
-    gap: 0.4rem;
-    margin-top: 0.25rem;
+    font-size: 1.15rem;
   }
 
   .hero-image-side {
     order: -1;
-    margin-top: 0;
-  }
-
-  .image-frame-glow {
-    max-height: 130px;
-  }
-
-  .image-overlay-info {
-    display: none !important;
   }
 
   .section-header h2, .reality-card h2, .cta-container h2 {
