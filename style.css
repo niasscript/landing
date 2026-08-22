@@ -586,6 +586,70 @@ header {
 }
 
 /* ==========================================
+   MASTER EXPLORER SECTION (FOLD 2)
+   ========================================== */
+.explorer-section {
+  padding: 60px 0;
+}
+
+.explorer-tabs-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  background: var(--color-bg-surface);
+  border: var(--border-glass);
+  border-radius: var(--border-radius-lg);
+  margin-bottom: 2.5rem;
+}
+
+.master-tab-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary);
+  padding: 0.8rem 1.8rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: all 0.25s ease;
+}
+
+.master-tab-btn:hover {
+  color: var(--color-accent-orange);
+  background: var(--color-accent-orange-glow);
+}
+
+.master-tab-btn.active {
+  color: #ffffff;
+  background: var(--color-accent-orange);
+}
+
+body.light-theme .master-tab-btn.active {
+  color: #ffffff !important;
+}
+
+.explorer-panel {
+  display: none;
+}
+
+.explorer-panel.active {
+  display: block;
+  animation: fadeIn 0.35s ease forwards;
+}
+
+.explorer-panel .reasons,
+.explorer-panel .services,
+.explorer-panel .comparison {
+  padding: 0;
+  border: none;
+}
+
+/* ==========================================
    KEY REASONS SECTION
    ========================================== */
 .reasons {
@@ -1520,6 +1584,30 @@ footer p {
 
   .intro, .reasons, .services, .comparison, .quiz-section, .reality, .cta {
     padding: 40px 0;
+  }
+
+  .explorer-section {
+    padding: 40px 0;
+  }
+
+  .explorer-tabs-container {
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .master-tab-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .explorer-panel .reasons,
+  .explorer-panel .services,
+  .explorer-panel .comparison {
+    padding: 0;
   }
 
   /* Mobile App Bottom Tab Bar */

@@ -57,6 +57,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    // Override active highlights if user is scrolling Fold 2 (explorer)
+    if (current === 'explorer') {
+      const activePanel = document.querySelector('.explorer-panel.active');
+      if (activePanel) {
+        const id = activePanel.getAttribute('id');
+        if (id === 'reasons-pane') current = 'reasons';
+        else if (id === 'services-pane') current = 'services';
+        else if (id === 'comparison-pane') current = 'comparison';
+      }
+    }
+
     // Update Desktop Nav
     desktopLinks.forEach(link => {
       link.classList.remove('active');
@@ -76,11 +87,70 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Smooth click visual feedback for mobile nav links
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileLinks.forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
+  /* ==========================================
+     MASTER EXPLORER TAB MECHANISM
+     ========================================== */
+  const masterTabButtons = document.querySelectorAll('.master-tab-btn');
+  const explorerPanels = document.querySelectorAll('.explorer-panel');
+
+  function switchMasterTab(targetId) {
+    masterTabButtons.forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.getAttribute('data-target') === targetId) {
+        btn.classList.add('active');
+      }
+    });
+
+    explorerPanels.forEach(panel => {
+      panel.classList.remove('active');
+      if (panel.getAttribute('id') === targetId) {
+        panel.classList.add('active');
+        
+        // Trigger reveal entrance animations for elements inside the active pane
+        const revealsInPane = panel.querySelectorAll('.reason-card, .tab-link, .comparison-card');
+        revealsInPane.forEach(el => {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        });
+      }
+    });
+  }
+
+  masterTabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-target');
+      switchMasterTab(target);
+    });
+  });
+
+  // Override clicks on desktop/mobile nav links to hook into master tabs
+  const allNavLinks = document.querySelectorAll('.desktop-nav a, .mobile-bottom-nav a, .cta-buttons a, .result-actions a, .hero-actions a');
+  allNavLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (!href) return;
+      
+      const targetHash = href.substring(1);
+      let paneId = '';
+      
+      if (targetHash === 'reasons') paneId = 'reasons-pane';
+      else if (targetHash === 'services') paneId = 'services-pane';
+      else if (targetHash === 'comparison') paneId = 'comparison-pane';
+      
+      if (paneId) {
+        e.preventDefault();
+        switchMasterTab(paneId);
+        
+        // Scroll to explorer section
+        const explorerSection = document.getElementById('explorer');
+        if (explorerSection) {
+          const topOffset = explorerSection.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({
+            top: topOffset,
+            behavior: 'smooth'
+          });
+        }
+      }
     });
   });
 
