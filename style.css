@@ -243,6 +243,34 @@ a:hover {
   transform: scale(1.02);
 }
 
+.btn-primary, .nav-btn-highlight, .header-cta-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after, .nav-btn-highlight::after, .header-cta-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  transition: 0.75s;
+  opacity: 0;
+}
+
+.btn-primary:hover::after, .nav-btn-highlight:hover::after, .header-cta-btn:hover::after {
+  left: 125%;
+  opacity: 1;
+}
+
 body.light-theme .btn-primary {
   color: #ffffff !important;
 }
@@ -728,6 +756,10 @@ body.light-theme .master-tab-btn.active {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15), var(--shadow-orange);
 }
 
+.reason-card:hover .reason-icon i {
+  animation: float 2s ease-in-out infinite;
+}
+
 .reason-card.hidden {
   display: none;
 }
@@ -947,6 +979,7 @@ body.light-theme .master-tab-btn.active {
   font-size: 4rem;
   opacity: 0.85;
   transition: transform 0.3s ease;
+  animation: float 4s ease-in-out infinite;
 }
 
 .service-visual:hover .service-huge-icon {
@@ -973,6 +1006,27 @@ body.light-theme .master-tab-btn.active {
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes border-pulse-caution {
+  0% {
+    border-color: rgba(209, 17, 36, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 0 0 0 rgba(209, 17, 36, 0.1);
+  }
+  50% {
+    border-color: rgba(209, 17, 36, 0.45);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 0 16px 6px rgba(209, 17, 36, 0.15);
+  }
+  100% {
+    border-color: rgba(209, 17, 36, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 0 0 0 rgba(209, 17, 36, 0.1);
   }
 }
 
@@ -1154,15 +1208,23 @@ tr:hover td {
   font-size: 0.95rem;
   text-align: left;
   cursor: pointer;
-  transition: all 0.15s ease;
   display: flex;
   align-items: center;
   gap: 1rem;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              background-color 0.2s ease, 
+              border-color 0.2s ease, 
+              box-shadow 0.2s ease;
 }
 
 .option-btn:hover {
   background: var(--color-accent-orange-glow);
   border-color: var(--color-accent-orange);
+  transform: translateX(4px);
+}
+
+.option-btn:active {
+  transform: scale(0.97) translateX(4px);
 }
 
 .opt-indicator {
@@ -1407,6 +1469,7 @@ tr:hover td {
 .border-caution {
   border: 1px solid rgba(209, 17, 36, 0.2);
   background: radial-gradient(circle at top right, rgba(209, 17, 36, 0.02), transparent 60%), var(--color-bg-surface);
+  animation: border-pulse-caution 3.5s infinite ease-in-out;
 }
 
 .reality-badge {
@@ -1465,6 +1528,10 @@ tr:hover td {
   transform: translateY(-4px) scale(1.02);
   border-color: var(--color-accent-red);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15), 0 0 15px rgba(209, 17, 36, 0.15);
+}
+
+.r-card:hover .r-icon i {
+  animation: float 2s ease-in-out infinite;
 }
 
 .r-icon {
