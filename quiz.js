@@ -308,10 +308,10 @@ function pushLeadToCRM(leadData) {
 
   // Map parameters into Frappe CRM CRM Lead schema
   const payload = {
-    "lead_name": leadData.name,
+    "first_name": leadData.name,
     "email": leadData.email,
     "mobile_no": leadData.phone,
-    "source": "Website - UPSC Assessment",
+    "source": "Website",
     "description": `UPSC Compatibility Assessment Result: ${leadData.quizScore}% Compatibility. Time Taken: ${timeTakenStr}`
   };
 
