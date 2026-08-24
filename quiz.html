@@ -128,7 +128,21 @@
                 </div>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-booking" style="margin-top: 1rem;">
+
+            <!-- Anti-Rush Reflection Warning Box [NEW] -->
+            <div id="rushed-warning" class="rushed-warning-box">
+              <h5><i class="fa-solid fa-triangle-exclamation"></i> Reflection Check</h5>
+              <p>You completed all questions in <strong id="rushed-elapsed">0</strong> seconds. This indicates you may not have read the questions and answers properly.</p>
+              <p style="font-weight: 700; margin-bottom: 0.5rem; color: var(--color-accent-orange);">
+                Please wait <span id="rushed-remaining">0</span> seconds to unlock submission.
+              </p>
+              <div class="rushed-quote">
+                "Concentration is the key to all knowledge. Arise, awake, and stop not till the goal is reached."<br>
+                <span style="font-weight: 700; display: block; margin-top: 0.25rem; font-size: 0.75rem;">— Swami Vivekananda</span>
+              </div>
+            </div>
+
+            <button type="submit" id="reveal-results-btn" class="btn btn-primary btn-booking" style="margin-top: 1rem;">
               Reveal My Results <i class="fa-solid fa-chevron-right"></i>
             </button>
           </form>

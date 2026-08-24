@@ -200,6 +200,45 @@ function showLeadForm() {
   document.getElementById('quiz-question-box').classList.remove('active');
   document.getElementById('quiz-lead-capture').classList.add('active');
   document.getElementById('lead-capture-form').reset();
+
+  // Anti-Rush Submission Gate
+  const revealBtn = document.getElementById('reveal-results-btn');
+  const rushedWarning = document.getElementById('rushed-warning');
+  const elapsedSpan = document.getElementById('rushed-elapsed');
+  const remainingSpan = document.getElementById('rushed-remaining');
+  
+  if (revealBtn && rushedWarning) {
+    // Calculate elapsed time (total time is 600s)
+    const secondsElapsed = 600 - timeLeft;
+    
+    if (secondsElapsed < 60) {
+      // Locked state!
+      revealBtn.disabled = true;
+      rushedWarning.style.display = 'block';
+      if (elapsedSpan) elapsedSpan.innerText = secondsElapsed;
+      
+      let secondsLeft = 60 - secondsElapsed;
+      if (remainingSpan) remainingSpan.innerText = secondsLeft;
+      
+      // Clear any existing reflection interval
+      if (window.reflectionInterval) clearInterval(window.reflectionInterval);
+      
+      window.reflectionInterval = setInterval(() => {
+        secondsLeft--;
+        if (remainingSpan) remainingSpan.innerText = secondsLeft;
+        
+        if (secondsLeft <= 0) {
+          clearInterval(window.reflectionInterval);
+          revealBtn.disabled = false;
+          rushedWarning.style.display = 'none';
+        }
+      }, 1000);
+    } else {
+      // Safe state! Ensure warning is hidden and button is active
+      revealBtn.disabled = false;
+      rushedWarning.style.display = 'none';
+    }
+  }
 }
 
 function handleLeadSubmit(event) {
@@ -445,6 +484,13 @@ function showResults(alignmentPercent) {
 
 function restartQuiz() {
   if (timerInterval) clearInterval(timerInterval);
+  if (window.reflectionInterval) clearInterval(window.reflectionInterval);
+  
+  const revealBtn = document.getElementById('reveal-results-btn');
+  const rushedWarning = document.getElementById('rushed-warning');
+  if (revealBtn) revealBtn.disabled = false;
+  if (rushedWarning) rushedWarning.style.display = 'none';
+
   document.getElementById('quiz-result').classList.remove('active');
   document.getElementById('quiz-question-box').classList.add('active');
   

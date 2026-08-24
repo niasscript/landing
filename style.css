@@ -2266,3 +2266,53 @@ footer p {
   font-size: 0.9rem;
   color: var(--color-text-primary);
 }
+
+/* Anti-Rush Warning Box */
+.rushed-warning-box {
+  display: none;
+  background: rgba(255, 107, 0, 0.03);
+  border: 1px dashed var(--color-accent-orange);
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin: 1.25rem 0;
+  text-align: left;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.rushed-warning-box h5 {
+  font-size: 0.9rem;
+  color: var(--color-accent-orange);
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rushed-warning-box p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.rushed-quote {
+  font-style: italic;
+  color: var(--color-text-secondary);
+  border-left: 2px solid var(--color-accent-orange);
+  padding-left: 0.75rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin-top: 0.75rem;
+}
+
+/* Submit Button Disabled State */
+.btn-booking:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--color-border-primary) !important;
+  border-color: var(--color-border-primary) !important;
+  color: var(--color-text-muted) !important;
+  box-shadow: none !important;
+}
