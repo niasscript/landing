@@ -285,32 +285,47 @@ function saveLeadLocally(leadData) {
 }
 
 /* ==========================================
-   CRM INTEGRATION HOOK
+   CRM INTEGRATION HOOK (FRAPPE CRM PROXY)
    ========================================== */
 function pushLeadToCRM(leadData) {
-  console.log("=== Lead Successfully Captured ===");
+  console.log("=== Lead Captured (Initiating CRM Sync) ===");
   console.log("Name: ", leadData.name);
   console.log("Email: ", leadData.email);
   console.log("Phone: ", leadData.phone);
-  console.log("UPSC Alignment Score: ", leadData.quizScore + "%");
-  console.log("Timestamp: ", leadData.timestamp);
-  console.log("====================================");
+  console.log("Score: ", leadData.quizScore + "%");
   
-  /* 
-     FUTURE CRM SETUP SKELETON:
-     To push to HubSpot, Salesforce, active campaigns, etc., uncomment & configure:
-     
-     fetch('https://your-crm-webhook-endpoint.com/leads', {
-       method: 'POST',
-       headers: {
-         'Content-Type': 'application/json'
-       },
-       body: JSON.stringify(leadData)
-     })
-     .then(response => response.json())
-     .then(data => console.log('CRM Sync Successful:', data))
-     .catch(err => console.error('CRM Sync Error:', err));
-  */
+  // Track time taken for exam
+  const totalSecondsTaken = 600 - timeLeft;
+  const takenMinutes = Math.floor(totalSecondsTaken / 60);
+  const takenSeconds = totalSecondsTaken % 60;
+  let timeTakenStr = "";
+  if (takenMinutes > 0) {
+    timeTakenStr = `${takenMinutes}m ${takenSeconds}s`;
+  } else {
+    timeTakenStr = `${takenSeconds}s`;
+  }
+  leadData.timeTaken = timeTakenStr;
+
+  // Post to local PHP proxy script which securely forwards to crm.upsccoaching.in
+  fetch('capture_lead.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(leadData)
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Frappe CRM Sync Success:', data);
+  })
+  .catch(err => {
+    console.error('Frappe CRM Sync Error:', err);
+  });
 }
 
 /* ==========================================
