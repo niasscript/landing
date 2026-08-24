@@ -75,7 +75,13 @@
           <div class="quiz-progress-bar">
             <div class="quiz-progress-fill" id="quiz-progress"></div>
           </div>
-          <span class="question-counter" id="question-counter">Question 1 of 7</span>
+          <div class="quiz-header-row">
+            <span class="question-counter" id="question-counter">Question 1 of 10</span>
+            <div class="timer-capsule" id="timer-capsule">
+              <i class="fa-solid fa-clock timer-icon"></i>
+              <span id="timer-text">10:00</span>
+            </div>
+          </div>
           <h3 class="question-text" id="question-text">Question text goes here?</h3>
           
           <div class="quiz-options">
@@ -127,39 +133,25 @@
 
         <!-- Quiz Results State -->
         <div id="quiz-result" class="quiz-step">
-          <div class="result-header">
+          <div class="result-header" style="margin-bottom: 1rem;">
             <i class="fa-solid fa-square-poll-vertical result-icon"></i>
             <h3>Your Alignment Rating</h3>
-            <div class="score-badge">
-              <span class="score-text" id="score-text">0%</span>
-              <span class="score-label" id="alignment-label">Alignment</span>
+            
+            <!-- SVG Progress Score Dial [NEW] -->
+            <div class="score-dial-container">
+              <svg class="score-svg" viewBox="0 0 120 120">
+                <circle class="score-bg-circle" cx="60" cy="60" r="50"></circle>
+                <circle class="score-fill-circle" cx="60" cy="60" r="50" id="score-fill-circle"></circle>
+              </svg>
+              <div class="score-dial-content">
+                <span class="score-text" id="score-text">0%</span>
+                <span class="score-label" id="alignment-label">Alignment</span>
+              </div>
             </div>
           </div>
 
           <div class="result-feedback" id="result-feedback-text">
             Feedback message.
-          </div>
-
-          <div class="reality-highlights">
-            <h4><i class="fa-solid fa-triangle-exclamation"></i> Keep in Mind:</h4>
-            <div class="reality-grid">
-              <div class="real-item">
-                <h5>High Competition</h5>
-                <p>Over a million candidates compete for limited vacancies. Hard work is mandatory, but selection is never guaranteed.</p>
-              </div>
-              <div class="real-item">
-                <h5>Marathon Preparation</h5>
-                <p>No shortcut replaces 12–18 months of intensive, consistent daily study.</p>
-              </div>
-              <div class="real-item">
-                <h5>Scrutiny & Pressure</h5>
-                <p>Governance brings high responsibility, complex trade-offs, and public exposure.</p>
-              </div>
-              <div class="real-item">
-                <h5>Location Realities</h5>
-                <p>Not always glamorous. Assignments can involve difficult locations and long hours.</p>
-              </div>
-            </div>
           </div>
 
           <!-- CTA to book counselling -->
@@ -201,11 +193,6 @@
                 <p>We've reserved your slot: <strong id="confirmed-slot">Slot</strong>. A calendar invite and Google Meet link have been sent to <span id="confirmed-email">Email</span>.</p>
               </div>
             </div>
-          </div>
-
-          <div class="result-actions">
-            <button class="btn btn-secondary" onclick="restartQuiz()"><i class="fa-solid fa-rotate-left"></i> Retake Assessment</button>
-            <a href="index.html#reality-section" class="btn btn-primary">Read the Reality Check <i class="fa-solid fa-chevron-right"></i></a>
           </div>
         </div>
       </div>

@@ -51,10 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize the first question directly
   displayQuestion();
 
+  // Start the countdown timer immediately on load
+  startTimer();
+
 });
 
 /* ==========================================
-   INTERACTIVE ALIGNMENT QUIZ
+   INTERACTIVE ALIGNMENT QUIZ QUESTIONS
    ========================================== */
 const quizQuestions = [
   {
@@ -84,15 +87,90 @@ const quizQuestions = [
   {
     text: "Is your motivation for UPSC driven by a genuine passion for administrative work rather than social status or peer expectations?",
     category: "intrinsic-motivation"
+  },
+  {
+    text: "Are you comfortable working in remote or underdeveloped regions with basic infrastructure for the first decade of your career?",
+    category: "location-realities"
+  },
+  {
+    text: "How do you handle setbacks, high-stress environments, and situations where hard work does not lead to immediate rewards?",
+    category: "resilience"
+  },
+  {
+    text: "Are you confident in maintaining strict political neutrality and personal integrity under external political or bureaucratic pressure?",
+    category: "integrity"
   }
 ];
 
 let currentQuestionIndex = 0;
 let userAnswers = [];
 let capturedLead = null;
+let timeLeft = 600; // 10 minutes in seconds
+let timerInterval = null;
 
+/* ==========================================
+   QUIZ COUNTDOWN TIMER LOGIC
+   ========================================== */
+function startTimer() {
+  if (timerInterval) clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    if (timeLeft <= 0) {
+      timeLeft = 0;
+      clearInterval(timerInterval);
+      autoSubmitOnTimeUp();
+    }
+    updateTimerDisplay();
+  }, 1000);
+}
 
+function updateTimerDisplay() {
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+  const formattedMinutes = String(minutes).padStart(2, '0');
+  const formattedSeconds = String(seconds).padStart(2, '0');
+  
+  const timerText = document.getElementById('timer-text');
+  const timerCapsule = document.getElementById('timer-capsule');
+  
+  if (timerText) {
+    timerText.innerText = `${formattedMinutes}:${formattedSeconds}`;
+  }
+  
+  if (timerCapsule) {
+    if (timeLeft < 60) {
+      timerCapsule.classList.add('timer-low');
+    } else {
+      timerCapsule.classList.remove('timer-low');
+    }
+  }
+}
 
+function autoSubmitOnTimeUp() {
+  // If we are already on results page or lead capture form, ignore
+  if (document.getElementById('quiz-result').classList.contains('active') || 
+      document.getElementById('quiz-lead-capture').classList.contains('active')) {
+    return;
+  }
+  
+  // Fill userAnswers with 1s (unanswered questions penalty) to prevent math issues
+  const missingAnswersCount = quizQuestions.length - userAnswers.length;
+  for (let i = 0; i < missingAnswersCount; i++) {
+    userAnswers.push(1);
+  }
+  
+  // Set warning title in lead generation form
+  const leadHeaderPara = document.querySelector('#quiz-lead-capture .result-header p');
+  if (leadHeaderPara) {
+    leadHeaderPara.innerHTML = `<strong style="color: var(--color-accent-red); font-size: 1.1rem; display: block; margin-bottom: 0.5rem;"><i class="fa-solid fa-triangle-exclamation"></i> Time has expired!</strong> Enter your details below to generate your UPSC compatibility score based on the questions completed.`;
+  }
+  
+  showLeadForm();
+}
+
+/* ==========================================
+   QUIZ TRANSITIONS & QUESTION PROGRESS
+   ========================================== */
 function displayQuestion() {
   const currentQuestion = quizQuestions[currentQuestionIndex];
   const progressPercent = ((currentQuestionIndex) / quizQuestions.length) * 100;
@@ -118,6 +196,7 @@ function selectOption(value) {
    LEAD GENERATION STEP
    ========================================== */
 function showLeadForm() {
+  if (timerInterval) clearInterval(timerInterval); // Stop timer immediately
   document.getElementById('quiz-question-box').classList.remove('active');
   document.getElementById('quiz-lead-capture').classList.add('active');
   document.getElementById('lead-capture-form').reset();
@@ -131,11 +210,13 @@ function handleLeadSubmit(event) {
   const phone = document.getElementById('l-phone').value.trim();
   
   if (name && email && phone) {
-    // 1. Calculate Score
-    const totalScore = userAnswers.reduce((sum, score) => sum + score, 0);
-    const alignmentPercent = Math.round(((totalScore - 7) / 14) * 100);
+    if (timerInterval) clearInterval(timerInterval); // Double-safety
     
-    // 2. Package Lead Data
+    // Calculate Score (10 questions: max score = 30, min score = 10)
+    const totalScore = userAnswers.reduce((sum, score) => sum + score, 0);
+    const alignmentPercent = Math.round(((totalScore - 10) / 20) * 100);
+    
+    // Package Lead Data
     capturedLead = {
       name: name,
       email: email,
@@ -144,18 +225,18 @@ function handleLeadSubmit(event) {
       timestamp: new Date().toISOString()
     };
     
-    // 3. Save Lead locally to localStorage (as backup / CSV prep)
+    // Save Lead locally to localStorage
     saveLeadLocally(capturedLead);
     
-    // 4. Call CRM Integration Hook
+    // Call CRM Integration Hook
     pushLeadToCRM(capturedLead);
     
-    // 5. Pre-populate parameters in the hidden fields of the booking checkout form
+    // Pre-populate parameters in the hidden fields of the booking checkout form
     document.getElementById('c-name').value = name;
     document.getElementById('c-email').value = email;
     document.getElementById('c-phone').value = phone;
     
-    // 6. Transition to Results Section
+    // Transition to Results Section
     showResults(alignmentPercent);
   }
 }
@@ -200,13 +281,11 @@ function pushLeadToCRM(leadData) {
 }
 
 /* ==========================================
-   QUIZ RESULTS
+   QUIZ RESULTS (DYNAMIC SVGs & COUNTERS)
    ========================================== */
 function showResults(alignmentPercent) {
   document.getElementById('quiz-lead-capture').classList.remove('active');
   document.getElementById('quiz-result').classList.add('active');
-  
-  document.getElementById('score-text').innerText = `${alignmentPercent}%`;
   
   const feedbackElement = document.getElementById('result-feedback-text');
   const labelElement = document.getElementById('alignment-label');
@@ -218,39 +297,87 @@ function showResults(alignmentPercent) {
   document.getElementById('booking-success').style.display = 'none';
   document.getElementById('counselling-form').reset();
   
+  // Set text labels based on score thresholds
+  let labelText = "";
+  let labelColor = "";
   if (alignmentPercent >= 80) {
-    labelElement.innerText = "High Alignment";
-    labelElement.style.color = "var(--color-accent-green)";
+    labelText = "High Alignment";
+    labelColor = "var(--color-accent-green)";
     feedbackElement.innerHTML = `
       <strong>Excellent! You show high compatibility with a Civil Services career.</strong><br><br>
       You have a strong affinity for public impact, administrative leadership, and problem-solving. You are intrinsically motivated to understand society and make decisions under pressure. 
       Because your profile matches this path exceptionally, we recommend booking a counseling slot below to align your study schedule.
     `;
   } else if (alignmentPercent >= 50) {
-    labelElement.innerText = "Moderate Alignment";
-    labelElement.style.color = "var(--color-accent-orange)";
+    labelText = "Moderate Alignment";
+    labelColor = "var(--color-accent-orange)";
     feedbackElement.innerHTML = `
       <strong>Good potential, but you should proceed with caution and reflection.</strong><br><br>
       You value leadership and want to make a difference, but you may have reservations about the intense preparation requirements, remote postings, or public scrutiny. 
       It is a good idea to book a session below to speak with an advisor about how to balance preparation with backup plans.
     `;
   } else {
-    labelElement.innerText = "Low Alignment";
-    labelElement.style.color = "var(--color-accent-red)";
+    labelText = "Low Alignment";
+    labelColor = "var(--color-accent-red)";
     feedbackElement.innerHTML = `
       <strong>A conventional career path might offer a better fit for your preferences.</strong><br><br>
       You likely prefer deep specializations, corporate or customer objectives, a highly structured work environment, or quicker career returns. 
       UPSC is not right for everyone, and that is perfectly okay. Modern conventional careers in technology, management, finance, or entrepreneurship offer incredible opportunities to lead. You can talk to an advisor below to explore alternative options.
     `;
   }
+  
+  // Trigger SVG stroke fill animation
+  const circle = document.getElementById('score-fill-circle');
+  if (circle) {
+    // stroke-dasharray = 314.16. Offset = 314.16 - (314.16 * percentage / 100)
+    const offset = 314.16 - (314.16 * alignmentPercent / 100);
+    circle.style.strokeDashoffset = offset;
+    circle.style.stroke = labelColor;
+  }
+  
+  // Trigger count-up text animation
+  let currentScore = 0;
+  const scoreTextElement = document.getElementById('score-text');
+  if (scoreTextElement) {
+    scoreTextElement.innerText = "0%";
+    labelElement.innerText = labelText;
+    labelElement.style.color = labelColor;
+    
+    const countInterval = setInterval(() => {
+      if (currentScore >= alignmentPercent) {
+        scoreTextElement.innerText = `${alignmentPercent}%`;
+        clearInterval(countInterval);
+      } else {
+        currentScore += Math.ceil(alignmentPercent / 25) || 1;
+        if (currentScore > alignmentPercent) currentScore = alignmentPercent;
+        scoreTextElement.innerText = `${currentScore}%`;
+      }
+    }, 30);
+  }
 }
 
 function restartQuiz() {
+  if (timerInterval) clearInterval(timerInterval);
   document.getElementById('quiz-result').classList.remove('active');
   document.getElementById('quiz-question-box').classList.add('active');
+  
+  // Reset lead capture sub-heading note
+  const leadHeaderPara = document.querySelector('#quiz-lead-capture .result-header p');
+  if (leadHeaderPara) {
+    leadHeaderPara.innerText = "Enter your details below to generate your personalized UPSC compatibility rating and receive a customized strategy guide.";
+  }
+  
   currentQuestionIndex = 0;
   userAnswers = [];
+  timeLeft = 600; // Reset 10 minutes
+  
+  // Reset timer capsule colors
+  const timerCapsule = document.getElementById('timer-capsule');
+  if (timerCapsule) timerCapsule.classList.remove('timer-low');
+  
+  updateTimerDisplay();
   displayQuestion();
+  startTimer();
 }
 
 function revealBookingForm() {
