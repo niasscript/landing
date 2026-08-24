@@ -285,10 +285,10 @@ function saveLeadLocally(leadData) {
 }
 
 /* ==========================================
-   CRM INTEGRATION HOOK (FRAPPE CRM PROXY)
+   CRM INTEGRATION HOOK (DIRECT CLIENT-SIDE PUSH)
    ========================================== */
 function pushLeadToCRM(leadData) {
-  console.log("=== Lead Captured (Initiating CRM Sync) ===");
+  console.log("=== Lead Captured (Initiating Direct CRM Sync) ===");
   console.log("Name: ", leadData.name);
   console.log("Email: ", leadData.email);
   console.log("Phone: ", leadData.phone);
@@ -306,13 +306,24 @@ function pushLeadToCRM(leadData) {
   }
   leadData.timeTaken = timeTakenStr;
 
-  // Post to local PHP proxy script which securely forwards to crm.upsccoaching.in
-  fetch('capture_lead.php', {
+  // Map parameters into Frappe CRM CRM Lead schema
+  const payload = {
+    "first_name": leadData.name,
+    "email_id": leadData.email,
+    "mobile_no": leadData.phone,
+    "source": "Website - UPSC Assessment",
+    "description": `UPSC Compatibility Assessment Result: ${leadData.quizScore}% Compatibility. Time Taken: ${timeTakenStr}`
+  };
+
+  // Direct fetch call to crm.upsccoaching.in (Bypasses local PHP server dependency)
+  fetch('https://crm.upsccoaching.in/api/resource/CRM%20Lead', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'token 03afbb36be363d9:502e552c427bf28'
     },
-    body: JSON.stringify(leadData)
+    body: JSON.stringify(payload)
   })
   .then(response => {
     if (!response.ok) {
@@ -321,10 +332,10 @@ function pushLeadToCRM(leadData) {
     return response.json();
   })
   .then(data => {
-    console.log('Frappe CRM Sync Success:', data);
+    console.log('Frappe CRM Direct Sync Success:', data);
   })
   .catch(err => {
-    console.error('Frappe CRM Sync Error:', err);
+    console.error('Frappe CRM Direct Sync Error (Possibly CORS block or invalid credentials):', err);
   });
 }
 
