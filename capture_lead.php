@@ -42,8 +42,8 @@ if (!$leadData || empty($leadData['name']) || empty($leadData['email']) || empty
 // CONFIGURATION (Update with your credentials)
 // ==========================================
 $frappeUrl = "https://crm.upsccoaching.in/api/resource/CRM%20Lead";
-$apiKey = "YOUR_FRAPPE_API_KEY";         // Replace with your generated CRM API key
-$apiSecret = "YOUR_FRAPPE_API_SECRET";   // Replace with your generated CRM API secret
+$apiKey = "03afbb36be363d9";         // Replace with your generated CRM API key
+$apiSecret = "502e552c427bf28";   // Replace with your generated CRM API secret
 
 // Map parameters into Frappe CRM field scheme
 $payload = [
