@@ -47,10 +47,10 @@
             <li><a href="#reasons">Key Reasons</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#comparison">Versus</a></li>
-            <li><a href="#quiz" class="nav-btn-highlight">Counselling</a></li>
+            <li><a href="quiz.html" class="nav-btn-highlight">Counselling</a></li>
           </ul>
         </nav>
-        <a href="#quiz" class="header-cta-btn">Counselling</a>
+        <a href="quiz.html" class="header-cta-btn">Counselling</a>
         <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
           <i class="fa-solid fa-moon"></i>
         </button>
@@ -75,7 +75,7 @@
           </p>
 
           <div class="hero-actions">
-            <a href="#quiz" class="btn btn-primary">Take Alignment Quiz <i class="fa-solid fa-chevron-right"></i></a>
+            <a href="quiz.html" class="btn btn-primary">Take Alignment Quiz <i class="fa-solid fa-chevron-right"></i></a>
             <a href="#reasons" class="btn btn-secondary">Explore Key Reasons <i class="fa-solid fa-arrow-down"></i></a>
           </div>
         </div>
@@ -594,7 +594,7 @@
     </div>
   </section>
 
-  <!-- Interactive Quiz Section -->
+  <!-- Interactive Quiz Teaser Section -->
   <section class="quiz-section" id="quiz">
     <div class="container">
       <div class="section-header">
@@ -604,124 +604,22 @@
       </div>
 
       <div class="quiz-container card-glass">
-        <!-- Quiz Intro State -->
-        <div id="quiz-intro" class="quiz-step active">
-          <div class="quiz-intro-content">
-            <i class="fa-solid fa-compass quiz-hero-icon"></i>
-            <h3>UPSC Career Alignment Matchmaker</h3>
-            <p>
-              UPSC requires deep commitment, and the exam is extremely competitive. Answering these 7 questions objectively will help evaluate your compatibility.
-            </p>
-            <button class="btn btn-primary" onclick="startQuiz()">Start Assessment <i class="fa-solid fa-chevron-right"></i></button>
-          </div>
-        </div>
-
-        <!-- Quiz Questions -->
-        <div id="quiz-question-box" class="quiz-step">
-          <div class="quiz-progress-bar">
-            <div class="quiz-progress-fill" id="quiz-progress"></div>
-          </div>
-          <span class="question-counter" id="question-counter">Question 1 of 7</span>
-          <h3 class="question-text" id="question-text">Question text goes here?</h3>
+        <div class="quiz-intro-content" style="padding: 3rem 1.5rem; display: flex; flex-direction: column; align-items: center; text-align: center;">
+          <i class="fa-solid fa-compass quiz-hero-icon" style="font-size: 3.5rem; color: var(--color-accent-orange); margin-bottom: 1.5rem; animation: float 4s ease-in-out infinite;"></i>
+          <h3>UPSC Career Compatibility Assessment</h3>
+          <p style="max-width: 600px; margin-bottom: 2rem; font-size: 0.95rem; line-height: 1.6;">
+            UPSC requires deep commitment, and the exam is extremely competitive. Evaluate your alignment across key dimensions—including curiosity, pressure tolerance, and service motivation—with our quick 7-question evaluation.
+          </p>
           
-          <div class="quiz-options">
-            <button class="option-btn" data-value="3">
-              <span class="opt-indicator">A</span>
-              <span class="opt-label">Yes, absolutely. This fits me well.</span>
-            </button>
-            <button class="option-btn" data-value="2">
-              <span class="opt-indicator">B</span>
-              <span class="opt-label">Somewhat or occasionally true.</span>
-            </button>
-            <button class="option-btn" data-value="1">
-              <span class="opt-indicator">C</span>
-              <span class="opt-label">Not really. I prefer other styles.</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Quiz Results State -->
-        <div id="quiz-result" class="quiz-step">
-          <div class="result-header">
-            <i class="fa-solid fa-square-poll-vertical result-icon"></i>
-            <h3>Your Alignment Rating</h3>
-            <div class="score-badge">
-              <span class="score-text" id="score-text">0%</span>
-              <span class="score-label" id="alignment-label">Alignment</span>
-            </div>
+          <div class="teaser-features" style="display: flex; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; justify-content: center; font-size: 0.85rem; font-weight: 700; color: var(--color-text-secondary);">
+            <span><i class="fa-regular fa-clock" style="color: var(--color-accent-orange); margin-right: 0.4rem;"></i> 2 Mins Analysis</span>
+            <span><i class="fa-solid fa-user-check" style="color: var(--color-accent-orange); margin-right: 0.4rem;"></i> Profile Matching</span>
+            <span><i class="fa-solid fa-chart-line" style="color: var(--color-accent-orange); margin-right: 0.4rem;"></i> Core Feedback</span>
           </div>
 
-          <div class="result-feedback" id="result-feedback-text">
-            Feedback message.
-          </div>
-
-          <div class="reality-highlights">
-            <h4><i class="fa-solid fa-triangle-exclamation"></i> Keep in Mind:</h4>
-            <div class="reality-grid">
-              <div class="real-item">
-                <h5>High Competition</h5>
-                <p>Over a million candidates compete for limited vacancies. Hard work is mandatory, but selection is never guaranteed.</p>
-              </div>
-              <div class="real-item">
-                <h5>Marathon Preparation</h5>
-                <p>No shortcut replaces 12–18 months of intensive, consistent daily study.</p>
-              </div>
-              <div class="real-item">
-                <h5>Scrutiny & Pressure</h5>
-                <p>Governance brings high responsibility, complex trade-offs, and public exposure.</p>
-              </div>
-              <div class="real-item">
-                <h5>Location Realities</h5>
-                <p>Not always glamorous. Assignments can involve difficult locations and long hours.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Counselling Booking Box -->
-          <div class="counselling-booking-box">
-            <div class="counselling-header">
-              <i class="fa-solid fa-circle-user counselling-avatar"></i>
-              <div class="counselling-meta">
-                <h4>Book a 1-to-1 Advisory Counselling Session</h4>
-                <p>Discuss your quiz result and plan your strategy with an expert civil services mentor.</p>
-              </div>
-            </div>
-            
-            <form id="counselling-form" class="counselling-form" onsubmit="handleCounsellingSubmit(event)">
-              <div class="form-grid">
-                <div class="form-group">
-                  <label for="c-name">Full Name</label>
-                  <input type="text" id="c-name" required placeholder="e.g. Aditi Sharma">
-                </div>
-                <div class="form-group">
-                  <label for="c-phone">Contact Number</label>
-                  <input type="tel" id="c-phone" required placeholder="e.g. +91 98765 43210">
-                </div>
-                <div class="form-group">
-                  <label for="c-email">Email Address</label>
-                  <input type="email" id="c-email" required placeholder="e.g. aditi@gmail.com">
-                </div>
-                <div class="form-group">
-                  <label for="c-slot">Preferred Date & Time</label>
-                  <input type="datetime-local" id="c-slot" required>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary btn-booking">Confirm Booking <i class="fa-solid fa-calendar-check"></i></button>
-            </form>
-
-            <div id="booking-success" class="booking-success-message">
-              <i class="fa-solid fa-circle-check"></i>
-              <div>
-                <h5>Counselling Booking Confirmed!</h5>
-                <p>We've reserved your slot: <strong id="confirmed-slot">Slot</strong>. A calendar invite and Google Meet link have been sent to <span id="confirmed-email">Email</span>.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="result-actions">
-            <button class="btn btn-secondary" onclick="restartQuiz()"><i class="fa-solid fa-rotate-left"></i> Retake Assessment</button>
-            <a href="#reality-section" class="btn btn-primary">Read the Reality Check <i class="fa-solid fa-chevron-right"></i></a>
-          </div>
+          <a href="quiz.html" class="btn btn-primary btn-booking btn-shimmer" style="text-decoration: none; padding: 0.8rem 2.2rem; font-size: 0.95rem;">
+            Start Alignment Quiz <i class="fa-solid fa-chevron-right" style="margin-left: 0.5rem;"></i>
+          </a>
         </div>
       </div>
     </div>
@@ -782,7 +680,7 @@
       
       <p class="cta-question">Ready to evaluate your compatibility or talk to a mentor?</p>
       <div class="cta-buttons">
-        <a href="#quiz" class="btn btn-primary">Take Compatibility Assessment <i class="fa-solid fa-compass"></i></a>
+        <a href="quiz.html" class="btn btn-primary">Take Compatibility Assessment <i class="fa-solid fa-compass"></i></a>
         <a href="#reasons" class="btn btn-secondary">Review Key Reasons <i class="fa-solid fa-list-check"></i></a>
       </div>
     </div>
@@ -804,7 +702,7 @@
   <div class="mobile-bottom-nav">
     <a href="#hero" class="mobile-nav-link active"><i class="fa-solid fa-house"></i><span>Home</span></a>
     <a href="#reasons" class="mobile-nav-link"><i class="fa-solid fa-list-check"></i><span>Reasons</span></a>
-    <a href="#quiz" class="mobile-nav-link center-fab">
+    <a href="quiz.html" class="mobile-nav-link center-fab">
       <div class="fab-circle">
         <i class="fa-solid fa-compass"></i>
       </div>
