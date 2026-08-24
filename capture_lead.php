@@ -41,7 +41,7 @@ if (!$leadData || empty($leadData['name']) || empty($leadData['email']) || empty
 // ==========================================
 // CONFIGURATION (Update with your credentials)
 // ==========================================
-$frappeUrl = "https://crm.upsccoaching.in/api/resource/Lead"; // Change to "CRM Lead" if using the specific CRM app, default ERPNext is "Lead"
+$frappeUrl = "https://crm.upsccoaching.in/api/resource/CRM%20Lead";
 $apiKey = "YOUR_FRAPPE_API_KEY";         // Replace with your generated CRM API key
 $apiSecret = "YOUR_FRAPPE_API_SECRET";   // Replace with your generated CRM API secret
 
