@@ -2199,11 +2199,12 @@ footer p {
 }
 
 .score-dial-content .score-label {
-  font-size: 0.65rem;
+  font-size: 0.52rem;
   text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
   color: var(--color-text-secondary);
+  white-space: nowrap;
 }
 
 @media (max-width: 768px) {

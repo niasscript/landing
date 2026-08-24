@@ -369,6 +369,62 @@ function showResults(alignmentPercent) {
       }
     }, 30);
   }
+
+  // Calculate component-level scores:
+  // Each component is comprised of 2 specific questions.
+  // Questions values are 1, 2, or 3. Min points = 2, max = 6.
+  // Component score = Math.round(((pts - 2) / 4) * 100).
+  const comp1Points = userAnswers[0] + userAnswers[1];
+  const comp2Points = userAnswers[4] + userAnswers[8];
+  const comp3Points = userAnswers[2] + userAnswers[3];
+  const comp4Points = userAnswers[5] + userAnswers[6];
+  const comp5Points = userAnswers[7] + userAnswers[9];
+
+  const compScores = [
+    Math.round(((comp1Points - 2) / 4) * 100),
+    Math.round(((comp2Points - 2) / 4) * 100),
+    Math.round(((comp3Points - 2) / 4) * 100),
+    Math.round(((comp4Points - 2) / 4) * 100),
+    Math.round(((comp5Points - 2) / 4) * 100)
+  ];
+
+  // Set values and colors for each component progress bar
+  compScores.forEach((score, index) => {
+    const barFill = document.getElementById(`comp-bar-${index + 1}`);
+    const scoreText = document.getElementById(`comp-score-${index + 1}`);
+    
+    if (barFill && scoreText) {
+      // Reset width first
+      barFill.style.width = '0%';
+      
+      // Set width trigger with timeout
+      setTimeout(() => {
+        barFill.style.width = `${score}%`;
+      }, 100);
+      
+      // Color-code the bar fill based on thresholds
+      if (score >= 80) {
+        barFill.style.backgroundColor = "var(--color-accent-green)";
+      } else if (score >= 50) {
+        barFill.style.backgroundColor = "var(--color-accent-orange)";
+      } else {
+        barFill.style.backgroundColor = "var(--color-accent-red)";
+      }
+      
+      // Count-up text animation
+      let currentCompScore = 0;
+      const compInterval = setInterval(() => {
+        if (currentCompScore >= score) {
+          scoreText.innerText = `${score}%`;
+          clearInterval(compInterval);
+        } else {
+          currentCompScore += 5;
+          if (currentCompScore > score) currentCompScore = score;
+          scoreText.innerText = `${currentCompScore}%`;
+        }
+      }, 25);
+    }
+  });
 }
 
 function restartQuiz() {

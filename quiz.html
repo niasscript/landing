@@ -159,6 +159,71 @@
             Feedback message.
           </div>
 
+          <!-- Component-Level competency analysis [NEW] -->
+          <div class="competency-analysis" id="competency-analysis" style="margin: 2.25rem 0; text-align: left; background: rgba(255, 255, 255, 0.02); border: var(--border-glass); border-radius: 8px; padding: 1.5rem;">
+            <h4 style="font-size: 1.05rem; color: var(--color-text-primary); margin-top: 0; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-heading);">
+              <i class="fa-solid fa-chart-bar" style="color: var(--color-accent-orange);"></i> Core Competency Breakdown
+            </h4>
+            <div class="competency-list" style="display: flex; flex-direction: column; gap: 1.1rem;">
+              
+              <!-- Component 1 -->
+              <div class="comp-item">
+                <div class="comp-meta" style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: var(--color-text-secondary); margin-bottom: 0.4rem;">
+                  <span>Cognitive &amp; Analytical Fit</span>
+                  <span id="comp-score-1" style="color: var(--color-text-primary);">0%</span>
+                </div>
+                <div class="comp-bar-bg" style="width: 100%; height: 8px; background: var(--color-border-primary); border-radius: 50px; overflow: hidden; position: relative;">
+                  <div id="comp-bar-1" class="comp-bar-fill" style="width: 0%; height: 100%; background: var(--color-accent-orange); border-radius: 50px; transition: width 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 1.2s ease;"></div>
+                </div>
+              </div>
+              
+              <!-- Component 2 -->
+              <div class="comp-item">
+                <div class="comp-meta" style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: var(--color-text-secondary); margin-bottom: 0.4rem;">
+                  <span>Endurance &amp; Resilience</span>
+                  <span id="comp-score-2" style="color: var(--color-text-primary);">0%</span>
+                </div>
+                <div class="comp-bar-bg" style="width: 100%; height: 8px; background: var(--color-border-primary); border-radius: 50px; overflow: hidden; position: relative;">
+                  <div id="comp-bar-2" class="comp-bar-fill" style="width: 0%; height: 100%; background: var(--color-accent-orange); border-radius: 50px; transition: width 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 1.2s ease;"></div>
+                </div>
+              </div>
+              
+              <!-- Component 3 -->
+              <div class="comp-item">
+                <div class="comp-meta" style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: var(--color-text-secondary); margin-bottom: 0.4rem;">
+                  <span>Leadership &amp; Responsibility</span>
+                  <span id="comp-score-3" style="color: var(--color-text-primary);">0%</span>
+                </div>
+                <div class="comp-bar-bg" style="width: 100%; height: 8px; background: var(--color-border-primary); border-radius: 50px; overflow: hidden; position: relative;">
+                  <div id="comp-bar-3" class="comp-bar-fill" style="width: 0%; height: 100%; background: var(--color-accent-orange); border-radius: 50px; transition: width 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 1.2s ease;"></div>
+                </div>
+              </div>
+              
+              <!-- Component 4 -->
+              <div class="comp-item">
+                <div class="comp-meta" style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: var(--color-text-secondary); margin-bottom: 0.4rem;">
+                  <span>Public Welfare Alignment</span>
+                  <span id="comp-score-4" style="color: var(--color-text-primary);">0%</span>
+                </div>
+                <div class="comp-bar-bg" style="width: 100%; height: 8px; background: var(--color-border-primary); border-radius: 50px; overflow: hidden; position: relative;">
+                  <div id="comp-bar-4" class="comp-bar-fill" style="width: 0%; height: 100%; background: var(--color-accent-orange); border-radius: 50px; transition: width 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 1.2s ease;"></div>
+                </div>
+              </div>
+              
+              <!-- Component 5 -->
+              <div class="comp-item">
+                <div class="comp-meta" style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: var(--color-text-secondary); margin-bottom: 0.4rem;">
+                  <span>Ethics &amp; Integrity Fit</span>
+                  <span id="comp-score-5" style="color: var(--color-text-primary);">0%</span>
+                </div>
+                <div class="comp-bar-bg" style="width: 100%; height: 8px; background: var(--color-border-primary); border-radius: 50px; overflow: hidden; position: relative;">
+                  <div id="comp-bar-5" class="comp-bar-fill" style="width: 0%; height: 100%; background: var(--color-accent-orange); border-radius: 50px; transition: width 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 1.2s ease;"></div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+
           <!-- CTA to book counselling -->
           <div class="booking-cta-container" id="booking-cta-container" style="text-align: center; margin: 2rem 0;">
             <button class="btn btn-primary btn-booking btn-shimmer" onclick="revealBookingForm()">
