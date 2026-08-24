@@ -2316,3 +2316,44 @@ footer p {
   color: var(--color-text-muted) !important;
   box-shadow: none !important;
 }
+
+/* Result Feedback Card Styling [NEW] */
+.result-feedback-card {
+  background: rgba(255, 255, 255, 0.015);
+  border: var(--border-glass);
+  border-left: 4px solid var(--color-accent-orange);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.result-feedback-card.match-high {
+  border-left-color: var(--color-accent-green);
+  background: rgba(46, 204, 113, 0.015);
+}
+
+.result-feedback-card.match-moderate {
+  border-left-color: var(--color-accent-orange);
+  background: rgba(255, 107, 0, 0.015);
+}
+
+.result-feedback-card.match-low {
+  border-left-color: var(--color-accent-red);
+  background: rgba(231, 76, 60, 0.015);
+}
+
+.result-feedback-card strong {
+  color: var(--color-text-primary);
+  font-size: 1.1rem;
+  display: block;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-heading);
+}
+
+.result-feedback-card p, .result-feedback-card {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}

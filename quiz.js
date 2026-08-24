@@ -201,43 +201,21 @@ function showLeadForm() {
   document.getElementById('quiz-lead-capture').classList.add('active');
   document.getElementById('lead-capture-form').reset();
 
-  // Anti-Rush Submission Gate
+  // Anti-Rush Warning banner (nudge warning only - do not lock submit button)
   const revealBtn = document.getElementById('reveal-results-btn');
   const rushedWarning = document.getElementById('rushed-warning');
   const elapsedSpan = document.getElementById('rushed-elapsed');
-  const remainingSpan = document.getElementById('rushed-remaining');
   
   if (revealBtn && rushedWarning) {
-    // Calculate elapsed time (total time is 600s)
     const secondsElapsed = 600 - timeLeft;
     
     if (secondsElapsed < 60) {
-      // Locked state!
-      revealBtn.disabled = true;
       rushedWarning.style.display = 'block';
       if (elapsedSpan) elapsedSpan.innerText = secondsElapsed;
-      
-      let secondsLeft = 60 - secondsElapsed;
-      if (remainingSpan) remainingSpan.innerText = secondsLeft;
-      
-      // Clear any existing reflection interval
-      if (window.reflectionInterval) clearInterval(window.reflectionInterval);
-      
-      window.reflectionInterval = setInterval(() => {
-        secondsLeft--;
-        if (remainingSpan) remainingSpan.innerText = secondsLeft;
-        
-        if (secondsLeft <= 0) {
-          clearInterval(window.reflectionInterval);
-          revealBtn.disabled = false;
-          rushedWarning.style.display = 'none';
-        }
-      }, 1000);
     } else {
-      // Safe state! Ensure warning is hidden and button is active
-      revealBtn.disabled = false;
       rushedWarning.style.display = 'none';
     }
+    revealBtn.disabled = false; // Never locked
   }
 }
 
@@ -360,6 +338,10 @@ function showResults(alignmentPercent) {
   const feedbackElement = document.getElementById('result-feedback-text');
   const labelElement = document.getElementById('alignment-label');
   
+  if (feedbackElement) {
+    feedbackElement.classList.remove('match-high', 'match-moderate', 'match-low');
+  }
+  
   // Reset counselling booking box view and CTA button
   document.getElementById('booking-cta-container').style.display = 'block';
   document.getElementById('counselling-booking-box').style.display = 'none';
@@ -371,6 +353,7 @@ function showResults(alignmentPercent) {
   let labelText = "";
   let labelColor = "";
   if (alignmentPercent >= 80) {
+    if (feedbackElement) feedbackElement.classList.add('match-high');
     labelText = "High Compatibility";
     labelColor = "var(--color-accent-green)";
     feedbackElement.innerHTML = `
@@ -379,6 +362,7 @@ function showResults(alignmentPercent) {
       Because your profile matches this path exceptionally, we recommend booking a counseling session below to plan your study schedule and strategy.
     `;
   } else if (alignmentPercent >= 50) {
+    if (feedbackElement) feedbackElement.classList.add('match-moderate');
     labelText = "Moderate Compatibility";
     labelColor = "var(--color-accent-orange)";
     feedbackElement.innerHTML = `
@@ -387,6 +371,7 @@ function showResults(alignmentPercent) {
       It is a good idea to book a session below to speak with an advisor about how to balance preparation with backup plans.
     `;
   } else {
+    if (feedbackElement) feedbackElement.classList.add('match-low');
     labelText = "Low Compatibility";
     labelColor = "var(--color-accent-red)";
     feedbackElement.innerHTML = `
