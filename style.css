@@ -2104,20 +2104,21 @@ footer p {
 .timer-capsule {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   background: rgba(255, 107, 0, 0.08);
-  border: 1px solid rgba(255, 107, 0, 0.2);
-  padding: 0.4rem 0.8rem;
+  border: 2px solid rgba(255, 107, 0, 0.25);
+  padding: 0.55rem 1.2rem;
   border-radius: 50px;
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-size: 1.15rem;
+  font-weight: 900;
   color: var(--color-accent-orange);
   font-family: var(--font-body);
-  box-shadow: 0 0 10px rgba(255, 107, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(255, 107, 0, 0.08);
   transition: all 0.3s ease;
 }
 
 .timer-capsule i {
+  font-size: 1.25rem;
   animation: rotateClock 4s linear infinite;
 }
 

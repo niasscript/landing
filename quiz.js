@@ -287,6 +287,21 @@ function showResults(alignmentPercent) {
   document.getElementById('quiz-lead-capture').classList.remove('active');
   document.getElementById('quiz-result').classList.add('active');
   
+  // Calculate and display total time taken
+  const totalSecondsTaken = 600 - timeLeft;
+  const takenMinutes = Math.floor(totalSecondsTaken / 60);
+  const takenSeconds = totalSecondsTaken % 60;
+  let timeTakenStr = "";
+  if (takenMinutes > 0) {
+    timeTakenStr = `${takenMinutes} ${takenMinutes === 1 ? 'minute' : 'minutes'} ${takenSeconds} ${takenSeconds === 1 ? 'second' : 'seconds'}`;
+  } else {
+    timeTakenStr = `${takenSeconds} ${takenSeconds === 1 ? 'second' : 'seconds'}`;
+  }
+  const timeTakenElement = document.getElementById('time-taken-text');
+  if (timeTakenElement) {
+    timeTakenElement.innerText = timeTakenStr;
+  }
+  
   const feedbackElement = document.getElementById('result-feedback-text');
   const labelElement = document.getElementById('alignment-label');
   
