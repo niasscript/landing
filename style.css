@@ -2108,9 +2108,6 @@ footer p {
 }
 
 .timer-capsule {
-  position: absolute;
-  top: 24px;
-  right: 28px;
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -2124,7 +2121,6 @@ footer p {
   font-family: var(--font-body);
   box-shadow: 0 4px 15px rgba(255, 107, 0, 0.15);
   transition: all 0.3s ease;
-  z-index: 10;
 }
 
 .timer-capsule i {
