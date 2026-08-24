@@ -152,7 +152,7 @@
         <div id="quiz-result" class="quiz-step">
           <div class="result-header" style="margin-bottom: 1rem;">
             <i class="fa-solid fa-square-poll-vertical result-icon"></i>
-            <h3>Your Alignment Rating</h3>
+            <h3>Your Compatibility Rating</h3>
             
             <!-- SVG Progress Score Dial [NEW] -->
             <div class="score-dial-container">
@@ -162,7 +162,7 @@
               </svg>
               <div class="score-dial-content">
                 <span class="score-text" id="score-text">0%</span>
-                <span class="score-label" id="alignment-label">Alignment</span>
+                <span class="score-label" id="alignment-label">Compatibility</span>
               </div>
             </div>
 
@@ -264,20 +264,14 @@
               <input type="hidden" id="c-email">
               <input type="hidden" id="c-phone">
 
-              <div class="form-grid" style="grid-template-columns: 1fr;">
-                <div class="form-group">
-                  <label for="c-slot" style="color: var(--color-accent-orange); font-weight: 800;">Select Preferred Date & Time</label>
-                  <input type="datetime-local" id="c-slot" required>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary btn-booking">Confirm Counselling Booking <i class="fa-solid fa-calendar-check"></i></button>
+              <button type="submit" class="btn btn-primary btn-booking" style="margin-top: 0.5rem; width: 100%;">Request Free Counselling Session <i class="fa-solid fa-calendar-check" style="margin-left: 0.5rem;"></i></button>
             </form>
 
             <div id="booking-success" class="booking-success-message">
               <i class="fa-solid fa-circle-check"></i>
               <div>
-                <h5>Counselling Booking Confirmed!</h5>
-                <p>We've reserved your slot: <strong id="confirmed-slot">Slot</strong>. A calendar invite and Google Meet link have been sent to <span id="confirmed-email">Email</span>.</p>
+                <h5>Counselling Session Requested!</h5>
+                <p>An expert civil services mentor will contact you at <span id="confirmed-email">Email</span> shortly to schedule your advisory session.</p>
               </div>
             </div>
           </div>

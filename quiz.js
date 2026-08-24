@@ -371,15 +371,15 @@ function showResults(alignmentPercent) {
   let labelText = "";
   let labelColor = "";
   if (alignmentPercent >= 80) {
-    labelText = "High Alignment";
+    labelText = "High Compatibility";
     labelColor = "var(--color-accent-green)";
     feedbackElement.innerHTML = `
       <strong>Excellent! You show high compatibility with a Civil Services career.</strong><br><br>
       You have a strong affinity for public impact, administrative leadership, and problem-solving. You are intrinsically motivated to understand society and make decisions under pressure. 
-      Because your profile matches this path exceptionally, we recommend booking a counseling slot below to align your study schedule.
+      Because your profile matches this path exceptionally, we recommend booking a counseling session below to plan your study schedule and strategy.
     `;
   } else if (alignmentPercent >= 50) {
-    labelText = "Moderate Alignment";
+    labelText = "Moderate Compatibility";
     labelColor = "var(--color-accent-orange)";
     feedbackElement.innerHTML = `
       <strong>Good potential, but you should proceed with caution and reflection.</strong><br><br>
@@ -387,7 +387,7 @@ function showResults(alignmentPercent) {
       It is a good idea to book a session below to speak with an advisor about how to balance preparation with backup plans.
     `;
   } else {
-    labelText = "Low Alignment";
+    labelText = "Low Compatibility";
     labelColor = "var(--color-accent-red)";
     feedbackElement.innerHTML = `
       <strong>A conventional career path might offer a better fit for your preferences.</strong><br><br>
@@ -533,32 +533,17 @@ function handleCounsellingSubmit(event) {
   
   const name = document.getElementById('c-name').value;
   const email = document.getElementById('c-email').value;
-  const slot = document.getElementById('c-slot').value;
+  const phone = document.getElementById('c-phone').value;
   
-  if (name && email && slot) {
-    // Format the date/time string nicely
-    let formattedSlot = slot;
-    try {
-      const dateObj = new Date(slot);
-      if (!isNaN(dateObj)) {
-        const options = { weekday: 'long', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-        formattedSlot = dateObj.toLocaleDateString('en-US', options) + ' IST';
-      }
-    } catch (e) {
-      console.error(e);
-    }
-
+  if (name && email) {
     // Save counselling booking request locally (augmented with leadData)
     const bookingData = {
       lead: capturedLead,
-      slot: slot,
-      formattedSlot: formattedSlot,
       bookedTimestamp: new Date().toISOString()
     };
     saveBookingLocally(bookingData);
 
     // Populate confirmation details
-    document.getElementById('confirmed-slot').innerText = formattedSlot;
     document.getElementById('confirmed-email').innerText = email;
     
     // Hide form and show success banner
