@@ -209,6 +209,22 @@ function handleLeadSubmit(event) {
   const email = document.getElementById('l-email').value.trim();
   const phone = document.getElementById('l-phone').value.trim();
   
+  // Strict Email Validation Regex
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!emailRegex.test(email)) {
+    alert("Please enter a valid email address.");
+    return;
+  }
+
+  // Strict 10-Digit Mobile Number Validation Regex
+  const phoneRegex = /^[0-9]{10}$/;
+  if (!phoneRegex.test(phone)) {
+    alert("Please enter a valid 10-digit mobile number.");
+    return;
+  }
+
+  const fullPhone = `+91 ${phone}`;
+  
   if (name && email && phone) {
     if (timerInterval) clearInterval(timerInterval); // Double-safety
     
@@ -220,7 +236,7 @@ function handleLeadSubmit(event) {
     capturedLead = {
       name: name,
       email: email,
-      phone: phone,
+      phone: fullPhone,
       quizScore: alignmentPercent,
       timestamp: new Date().toISOString()
     };
@@ -234,7 +250,7 @@ function handleLeadSubmit(event) {
     // Pre-populate parameters in the hidden fields of the booking checkout form
     document.getElementById('c-name').value = name;
     document.getElementById('c-email').value = email;
-    document.getElementById('c-phone').value = phone;
+    document.getElementById('c-phone').value = fullPhone;
     
     // Transition to Results Section
     showResults(alignmentPercent);

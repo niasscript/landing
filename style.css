@@ -2231,3 +2231,38 @@ footer p {
     padding-bottom: 0;
   }
 }
+
+/* Phone Number Input with Fixed Country Code */
+.phone-input-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 4px;
+  transition: border-color 0.2s ease;
+}
+
+.phone-input-wrapper:focus-within {
+  border-color: var(--color-accent-orange);
+}
+
+.phone-prefix {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  padding-left: 1rem;
+  padding-right: 0.5rem;
+  border-right: 1px solid var(--color-border-primary);
+  user-select: none;
+}
+
+.phone-input-wrapper input {
+  border: none !important;
+  background: transparent !important;
+  padding: 0.7rem 1rem 0.7rem 0.5rem !important;
+  outline: none !important;
+  width: 100%;
+  font-size: 0.9rem;
+  color: var(--color-text-primary);
+}
