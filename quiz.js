@@ -327,7 +327,12 @@ function pushLeadToCRM(leadData) {
   })
   .then(response => {
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      return response.json().then(errData => {
+        console.error("Frappe CRM API Error Details:", errData);
+        throw new Error(`HTTP error! status: ${response.status}. Details: ${JSON.stringify(errData)}`);
+      }).catch(() => {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      });
     }
     return response.json();
   })
@@ -335,7 +340,7 @@ function pushLeadToCRM(leadData) {
     console.log('Frappe CRM Direct Sync Success:', data);
   })
   .catch(err => {
-    console.error('Frappe CRM Direct Sync Error (Possibly CORS block or invalid credentials):', err);
+    console.error('Frappe CRM Direct Sync Error:', err);
   });
 }
 
