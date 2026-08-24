@@ -48,6 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Initialize the first question directly
+  displayQuestion();
+
 });
 
 /* ==========================================
@@ -88,16 +91,7 @@ let currentQuestionIndex = 0;
 let userAnswers = [];
 let capturedLead = null;
 
-function startQuiz() {
-  document.getElementById('quiz-intro').classList.remove('active');
-  document.getElementById('quiz-question-box').classList.add('active');
-  document.getElementById('quiz-lead-capture').classList.remove('active');
-  document.getElementById('quiz-result').classList.remove('active');
-  
-  currentQuestionIndex = 0;
-  userAnswers = [];
-  displayQuestion();
-}
+
 
 function displayQuestion() {
   const currentQuestion = quizQuestions[currentQuestionIndex];
@@ -217,7 +211,9 @@ function showResults(alignmentPercent) {
   const feedbackElement = document.getElementById('result-feedback-text');
   const labelElement = document.getElementById('alignment-label');
   
-  // Reset counselling booking box view
+  // Reset counselling booking box view and CTA button
+  document.getElementById('booking-cta-container').style.display = 'block';
+  document.getElementById('counselling-booking-box').style.display = 'none';
   document.getElementById('counselling-form').style.display = 'flex';
   document.getElementById('booking-success').style.display = 'none';
   document.getElementById('counselling-form').reset();
@@ -251,7 +247,22 @@ function showResults(alignmentPercent) {
 
 function restartQuiz() {
   document.getElementById('quiz-result').classList.remove('active');
-  document.getElementById('quiz-intro').classList.add('active');
+  document.getElementById('quiz-question-box').classList.add('active');
+  currentQuestionIndex = 0;
+  userAnswers = [];
+  displayQuestion();
+}
+
+function revealBookingForm() {
+  document.getElementById('booking-cta-container').style.display = 'none';
+  const bookingBox = document.getElementById('counselling-booking-box');
+  bookingBox.style.display = 'block';
+  bookingBox.style.animation = 'fadeIn 0.4s ease forwards';
+  
+  // Scroll smoothly to the booking form
+  setTimeout(() => {
+    bookingBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 50);
 }
 
 /* ==========================================
