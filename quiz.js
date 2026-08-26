@@ -311,7 +311,7 @@ function pushLeadToCRM(leadData) {
     "first_name": leadData.name,
     "email": leadData.email,
     "mobile_no": leadData.phone,
-    "source": "Website",
+    "source": "Website Lead",
     "description": `UPSC Compatibility Assessment Result: ${leadData.quizScore}% Compatibility. Time Taken: ${timeTakenStr}`
   };
 
