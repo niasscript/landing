@@ -331,7 +331,7 @@ function pushLeadToCRM(leadData) {
     "email": leadData.email,
     "mobile_no": leadData.phone,
     "source": "Website Lead",
-    "description": `UPSC Compatibility Assessment Result: ${leadData.quizScore}% Compatibility. Time Taken: ${timeTakenStr}`
+    "description": `UPSC Fit Check Result: ${leadData.quizScore}% Compatibility. Time Taken: ${timeTakenStr}`
   };
 
   // Direct fetch call to crm.upsccoaching.in (Bypasses local PHP server dependency)
