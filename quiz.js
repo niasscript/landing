@@ -220,21 +220,45 @@ function showLeadForm() {
   document.getElementById('quiz-lead-capture').classList.add('active');
   document.getElementById('lead-capture-form').reset();
 
-  // Anti-Rush Warning banner (nudge warning only - do not lock submit button)
+  // Dynamic Pacing Feedback Box
   const revealBtn = document.getElementById('reveal-results-btn');
   const rushedWarning = document.getElementById('rushed-warning');
-  const elapsedSpan = document.getElementById('rushed-elapsed');
+  const pacingTitle = document.getElementById('pacing-title');
+  const pacingDesc = document.getElementById('pacing-desc');
+  const pacingQuote = document.getElementById('pacing-quote');
   
-  if (revealBtn && rushedWarning) {
-    const secondsElapsed = 120 - timeLeft;
-    
-    if (secondsElapsed < 15) {
-      rushedWarning.style.display = 'block';
-      if (elapsedSpan) elapsedSpan.innerText = secondsElapsed;
+  if (rushedWarning) {
+    const secondsElapsed = Math.max(1, 120 - timeLeft);
+    rushedWarning.style.display = 'block';
+
+    if (secondsElapsed >= 30) {
+      // Positive feedback for taking time / thoughtful introspection (>30s)
+      rushedWarning.className = 'rushed-warning-box pacing-thoughtful';
+      if (pacingTitle) {
+        pacingTitle.innerHTML = '<i class="fa-solid fa-circle-check" style="color: var(--color-accent-green);"></i> Thoughtful &amp; Focused Reflection';
+      }
+      if (pacingDesc) {
+        pacingDesc.innerHTML = `You took <strong>${secondsElapsed} seconds</strong> to evaluate each scenario carefully. This deliberate, patient mindset is a key strength for Civil Services decision-making.`;
+      }
+      if (pacingQuote) {
+        pacingQuote.style.borderLeftColor = 'var(--color-accent-green)';
+        pacingQuote.innerHTML = '"Patience, perseverance, and calm deliberation build the foundation of great governance."';
+      }
     } else {
-      rushedWarning.style.display = 'none';
+      // Fast-paced decision making note (positive, no harsh wording)
+      rushedWarning.className = 'rushed-warning-box pacing-fast';
+      if (pacingTitle) {
+        pacingTitle.innerHTML = '<i class="fa-solid fa-bolt" style="color: var(--color-accent-orange);"></i> Fast-Paced Response Recorded';
+      }
+      if (pacingDesc) {
+        pacingDesc.innerHTML = `You completed all questions in <strong>${secondsElapsed} seconds</strong>. You demonstrate fast intuitive instincts under time constraints.`;
+      }
+      if (pacingQuote) {
+        pacingQuote.style.borderLeftColor = 'var(--color-accent-orange)';
+        pacingQuote.innerHTML = '"Quick decision-making is a valuable asset when paired with structured administrative discipline."';
+      }
     }
-    revealBtn.disabled = false; // Never locked
+    if (revealBtn) revealBtn.disabled = false;
   }
 }
 

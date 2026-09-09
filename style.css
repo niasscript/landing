@@ -2268,21 +2268,37 @@ footer p {
   color: var(--color-text-primary);
 }
 
-/* Anti-Rush Warning Box */
+/* Dynamic Pacing Feedback Box */
 .rushed-warning-box {
   display: none;
-  background: rgba(255, 107, 0, 0.03);
-  border: 1px dashed var(--color-accent-orange);
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 1.25rem;
   margin: 1.25rem 0;
   text-align: left;
   animation: fadeIn 0.4s ease forwards;
+  transition: all 0.3s ease;
+}
+
+.rushed-warning-box.pacing-thoughtful {
+  background: rgba(70, 209, 96, 0.05);
+  border: 1px solid rgba(70, 209, 96, 0.35);
+}
+
+.rushed-warning-box.pacing-thoughtful h5 {
+  color: var(--color-accent-green);
+}
+
+.rushed-warning-box.pacing-fast {
+  background: rgba(255, 69, 0, 0.05);
+  border: 1px solid rgba(255, 69, 0, 0.3);
+}
+
+.rushed-warning-box.pacing-fast h5 {
+  color: var(--color-accent-orange);
 }
 
 .rushed-warning-box h5 {
-  font-size: 0.9rem;
-  color: var(--color-accent-orange);
+  font-size: 0.95rem;
   font-weight: 700;
   margin-top: 0;
   margin-bottom: 0.5rem;
@@ -2292,8 +2308,8 @@ footer p {
 }
 
 .rushed-warning-box p {
-  font-size: 0.85rem;
-  line-height: 1.5;
+  font-size: 0.88rem;
+  line-height: 1.55;
   color: var(--color-text-primary);
   margin-bottom: 0.75rem;
 }
@@ -2303,8 +2319,8 @@ footer p {
   color: var(--color-text-secondary);
   border-left: 2px solid var(--color-accent-orange);
   padding-left: 0.75rem;
-  font-size: 0.8rem;
-  line-height: 1.4;
+  font-size: 0.82rem;
+  line-height: 1.45;
   margin-top: 0.75rem;
 }
 
