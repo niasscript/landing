@@ -40,14 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Bind option selection interactions on quiz buttons
-  const optionButtons = document.querySelectorAll('.option-btn');
-  optionButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      selectOption(parseInt(btn.getAttribute('data-value')));
-    });
-  });
-
   // Initialize the first question directly
   displayQuestion();
 
@@ -57,55 +49,71 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================
-   INTERACTIVE ALIGNMENT QUIZ QUESTIONS
+   INTERACTIVE ALIGNMENT QUIZ QUESTIONS (7 QUESTIONS)
    ========================================== */
 const quizQuestions = [
   {
-    text: "How interested are you in understanding society, governance, politics, economy, and global events?",
-    category: "curiosity"
+    text: "Do you want a career where you can lead a large team and manage big projects at a young age?",
+    options: [
+      { label: "Yes, absolutely", value: 3 },
+      { label: "Maybe, depending on the role", value: 2 },
+      { label: "No, I prefer an individual role", value: 1 }
+    ]
   },
   {
-    text: "Do you enjoy analyzing complex systemic problems and finding practical, structured solutions?",
-    category: "problem-solving"
+    text: "Do you like the idea of being the decision-maker in a room full of people, rather than waiting for someone else's approval?",
+    options: [
+      { label: "Yes, I like taking charge", value: 3 },
+      { label: "I’m comfortable sharing decisions", value: 2 },
+      { label: "No, I prefer working under guidance", value: 1 }
+    ]
   },
   {
-    text: "Are you comfortable bearing responsibility for high-stakes decisions that directly impact millions?",
-    category: "responsibility"
+    text: "Do you want a career where your decisions can directly impact thousands of lives?",
+    options: [
+      { label: "Yes, that motivates me", value: 3 },
+      { label: "I’m open to it", value: 2 },
+      { label: "Not particularly", value: 1 }
+    ]
   },
   {
-    text: "How much do you value working in close cooperation with diverse teams, government systems, and local communities?",
-    category: "team-player"
+    text: "When you see corruption or inefficiency around you, do you feel a strong drive to step in and fix them?",
+    options: [
+      { label: "Strongly agree", value: 3 },
+      { label: "Somewhat agree", value: 2 },
+      { label: "Not really", value: 1 }
+    ]
   },
   {
-    text: "Are you willing to dedicate 1–2 years of intensive, daily study for a highly competitive examination with no guarantee of selection?",
-    category: "long-term"
+    text: "When you face a tough problem, do you like to look at all the facts before deciding, or do you just go with your gut feeling?",
+    options: [
+      { label: "Analyze the facts", value: 3 },
+      { label: "Balance facts and intuition", value: 2 },
+      { label: "Trust my gut", value: 1 }
+    ]
   },
   {
-    text: "Would you rather have public-welfare impact in your career over organizational profitability or corporate growth?",
-    category: "public-impact"
+    text: "How comfortable are you with 1–2 years of intense, structured daily study before results show?",
+    options: [
+      { label: "Very comfortable", value: 3 },
+      { label: "Manageable with discipline", value: 2 },
+      { label: "I prefer a faster path", value: 1 }
+    ]
   },
   {
-    text: "Is your motivation for UPSC driven by a genuine passion for administrative work rather than social status or peer expectations?",
-    category: "intrinsic-motivation"
-  },
-  {
-    text: "Are you comfortable working in remote or underdeveloped regions with basic infrastructure for the first decade of your career?",
-    category: "location-realities"
-  },
-  {
-    text: "How do you handle setbacks, high-stress environments, and situations where hard work does not lead to immediate rewards?",
-    category: "resilience"
-  },
-  {
-    text: "Are you confident in maintaining strict political neutrality and personal integrity under external political or bureaucratic pressure?",
-    category: "integrity"
+    text: "Would you rather have a dynamic career where every day is a new opportunity, instead of a regular 9-to-5 desk job?",
+    options: [
+      { label: "Dynamic career", value: 3 },
+      { label: "A mix of both", value: 2 },
+      { label: "Regular desk job", value: 1 }
+    ]
   }
 ];
 
 let currentQuestionIndex = 0;
 let userAnswers = [];
 let capturedLead = null;
-let timeLeft = 600; // 10 minutes in seconds
+let timeLeft = 120; // 2 minutes in seconds
 let timerInterval = null;
 
 /* ==========================================
@@ -138,7 +146,7 @@ function updateTimerDisplay() {
   }
   
   if (timerCapsule) {
-    if (timeLeft < 60) {
+    if (timeLeft < 30) {
       timerCapsule.classList.add('timer-low');
     } else {
       timerCapsule.classList.remove('timer-low');
@@ -178,6 +186,17 @@ function displayQuestion() {
   document.getElementById('quiz-progress').style.width = `${progressPercent === 0 ? 5 : progressPercent}%`;
   document.getElementById('question-counter').innerText = `Question ${currentQuestionIndex + 1} of ${quizQuestions.length}`;
   document.getElementById('question-text').innerText = currentQuestion.text;
+
+  const optionsContainer = document.querySelector('.quiz-options');
+  if (optionsContainer && currentQuestion.options) {
+    const letters = ['A', 'B', 'C'];
+    optionsContainer.innerHTML = currentQuestion.options.map((opt, idx) => `
+      <button class="option-btn" data-value="${opt.value}" onclick="selectOption(${opt.value})">
+        <span class="opt-indicator">${letters[idx]}</span>
+        <span class="opt-label">${opt.label}</span>
+      </button>
+    `).join('');
+  }
 }
 
 function selectOption(value) {
@@ -207,9 +226,9 @@ function showLeadForm() {
   const elapsedSpan = document.getElementById('rushed-elapsed');
   
   if (revealBtn && rushedWarning) {
-    const secondsElapsed = 600 - timeLeft;
+    const secondsElapsed = 120 - timeLeft;
     
-    if (secondsElapsed < 60) {
+    if (secondsElapsed < 15) {
       rushedWarning.style.display = 'block';
       if (elapsedSpan) elapsedSpan.innerText = secondsElapsed;
     } else {
@@ -245,9 +264,9 @@ function handleLeadSubmit(event) {
   if (name && email && phone) {
     if (timerInterval) clearInterval(timerInterval); // Double-safety
     
-    // Calculate Score (10 questions: max score = 30, min score = 10)
+    // Calculate Score (7 questions: max score = 21, min score = 7)
     const totalScore = userAnswers.reduce((sum, score) => sum + score, 0);
-    const alignmentPercent = Math.round(((totalScore - 10) / 20) * 100);
+    const alignmentPercent = Math.round(((totalScore - 7) / 14) * 100);
     
     // Package Lead Data
     capturedLead = {
@@ -295,7 +314,7 @@ function pushLeadToCRM(leadData) {
   console.log("Score: ", leadData.quizScore + "%");
   
   // Track time taken for exam
-  const totalSecondsTaken = 600 - timeLeft;
+  const totalSecondsTaken = 120 - timeLeft;
   const takenMinutes = Math.floor(totalSecondsTaken / 60);
   const takenSeconds = totalSecondsTaken % 60;
   let timeTakenStr = "";
@@ -352,7 +371,7 @@ function showResults(alignmentPercent) {
   document.getElementById('quiz-result').classList.add('active');
   
   // Calculate and display total time taken
-  const totalSecondsTaken = 600 - timeLeft;
+  const totalSecondsTaken = 120 - timeLeft;
   const takenMinutes = Math.floor(totalSecondsTaken / 60);
   const takenSeconds = totalSecondsTaken % 60;
   let timeTakenStr = "";
@@ -442,14 +461,12 @@ function showResults(alignmentPercent) {
   }
 
   // Calculate component-level scores:
-  // Each component is comprised of 2 specific questions.
-  // Questions values are 1, 2, or 3. Min points = 2, max = 6.
-  // Component score = Math.round(((pts - 2) / 4) * 100).
-  const comp1Points = userAnswers[0] + userAnswers[1];
-  const comp2Points = userAnswers[4] + userAnswers[8];
-  const comp3Points = userAnswers[2] + userAnswers[3];
-  const comp4Points = userAnswers[5] + userAnswers[6];
-  const comp5Points = userAnswers[7] + userAnswers[9];
+  // Evaluated across 5 competencies
+  const comp1Points = userAnswers[4] + userAnswers[1];
+  const comp2Points = (userAnswers[5] - 1) * 2 + 2;
+  const comp3Points = userAnswers[0] + userAnswers[1];
+  const comp4Points = userAnswers[2] + userAnswers[6];
+  const comp5Points = (userAnswers[3] - 1) * 2 + 2;
 
   const compScores = [
     Math.round(((comp1Points - 2) / 4) * 100),
@@ -518,7 +535,7 @@ function restartQuiz() {
   
   currentQuestionIndex = 0;
   userAnswers = [];
-  timeLeft = 600; // Reset 10 minutes
+  timeLeft = 120; // Reset 2 minutes
   
   // Reset timer capsule colors
   const timerCapsule = document.getElementById('timer-capsule');
