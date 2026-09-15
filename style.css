@@ -85,9 +85,12 @@ html {
 
 body {
   font-family: var(--font-body);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background-color: var(--color-bg-base);
   color: var(--color-text-primary);
-  line-height: 1.6;
+  line-height: 1.65;
   overflow-x: hidden;
   position: relative;
   -webkit-tap-highlight-color: transparent;
@@ -164,13 +167,15 @@ body.light-theme ::-webkit-scrollbar-thumb:hover {
 
 /* Typography elements */
 h1, h2, h3, h4 {
-  font-weight: 700;
-  line-height: 1.2;
+  font-weight: 600;
+  line-height: 1.25;
   color: var(--color-text-primary);
+  letter-spacing: -0.02em;
 }
 
 p {
   color: var(--color-text-secondary);
+  font-weight: 400;
 }
 
 a {
@@ -213,12 +218,12 @@ a:hover {
   padding: 0.55rem 2.5rem;
   font-family: var(--font-body);
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 600;
   border-radius: 9999px;
   cursor: pointer;
   transition: all 0.2s ease;
   text-transform: none;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.3px;
 }
 
 .btn-primary {
@@ -282,7 +287,7 @@ body.light-theme .btn-primary {
 
 .section-subtitle {
   font-size: 0.75rem;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: 1.5px;
   color: var(--color-accent-orange);
   text-transform: uppercase;
@@ -297,6 +302,7 @@ body.light-theme .btn-primary {
 
 .section-header h2 {
   font-size: 2.2rem;
+  font-weight: 600;
   margin-bottom: 0.75rem;
 }
 
@@ -304,6 +310,7 @@ body.light-theme .btn-primary {
   max-width: 650px;
   margin: 0 auto;
   font-size: 1.05rem;
+  font-weight: 400;
 }
 
 /* ==========================================
@@ -347,14 +354,14 @@ header {
 
 .logo-title {
   font-size: 1.15rem;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--color-text-primary);
-  letter-spacing: -0.5px;
+  letter-spacing: -0.3px;
 }
 
 .logo-subtitle {
   font-size: 0.6rem;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 1px;
   color: var(--color-text-secondary);
 }
@@ -374,7 +381,7 @@ header {
 
 .desktop-nav a {
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-text-secondary);
   padding: 0.4rem 0.8rem;
   border-radius: 4px;
@@ -391,6 +398,7 @@ header {
   background: var(--color-accent-orange-glow);
   border: 1px solid rgba(10, 102, 194, 0.15);
   color: var(--color-accent-orange) !important;
+  font-weight: 500;
 }
 
 .nav-btn-highlight:hover {
@@ -453,9 +461,9 @@ header {
   background: var(--color-accent-orange-glow);
   border: 1px solid rgba(10, 102, 194, 0.15);
   border-radius: 9999px;
-  font-size: 0.7rem;
-  letter-spacing: 1px;
-  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.8px;
+  font-weight: 500;
   color: var(--color-accent-orange);
   margin-bottom: 1.5rem;
 }
@@ -469,10 +477,10 @@ header {
 }
 
 .hero h1 {
-  font-size: 3rem;
-  font-weight: 800;
+  font-size: 2.85rem;
+  font-weight: 700;
   color: var(--color-text-primary);
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
   margin-bottom: 1rem;
 }
 
@@ -480,7 +488,7 @@ header {
   font-size: 1.35rem;
   color: var(--color-accent-orange);
   margin-bottom: 1.5rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .hero-desc {
@@ -534,7 +542,7 @@ header {
   padding: 0.4rem 1rem;
   border-radius: 9999px;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-text-primary);
 }
 
@@ -585,8 +593,9 @@ header {
 
 .intro-text h2 {
   font-size: 1.8rem;
+  font-weight: 600;
   margin-bottom: 1.2rem;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.3px;
 }
 
 .accent-text {
@@ -596,6 +605,7 @@ header {
 .intro-text p {
   font-size: 1rem;
   color: var(--color-text-secondary);
+  font-weight: 400;
 }
 
 .intro-quote {
@@ -607,15 +617,16 @@ header {
 }
 
 .portal-quote {
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   color: var(--color-accent-orange);
-  font-weight: 700;
-  line-height: 1.3;
+  font-weight: 600;
+  line-height: 1.35;
 }
 
 .quote-explanation {
   font-size: 0.9rem;
   line-height: 1.6;
+  font-weight: 400;
 }
 
 /* ==========================================
@@ -643,7 +654,7 @@ header {
   padding: 0.8rem 1.8rem;
   font-family: var(--font-body);
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 500;
   border-radius: var(--border-radius-md);
   cursor: pointer;
   display: inline-flex;
@@ -715,7 +726,7 @@ body.light-theme .master-tab-btn.active {
   padding: 0.5rem 1.2rem;
   border-radius: 9999px;
   font-family: var(--font-body);
-  font-weight: 700;
+  font-weight: 500;
   font-size: 0.85rem;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -785,7 +796,7 @@ body.light-theme .master-tab-btn.active {
 
 .reason-num {
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-accent-orange);
   border: 1px solid var(--color-accent-orange-glow);
   background: var(--color-accent-orange-glow);
@@ -802,8 +813,9 @@ body.light-theme .master-tab-btn.active {
 
 .reason-body-text {
   font-size: 0.9rem;
-  color: var(--color-text-primary);
-  line-height: 1.55;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+  line-height: 1.6;
 }
 
 .reason-footer {
@@ -814,7 +826,7 @@ body.light-theme .master-tab-btn.active {
 
 .reason-tag {
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--color-text-secondary);
 }
 
@@ -869,7 +881,7 @@ body.light-theme .master-tab-btn.active {
 
 .tab-abbr {
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: 600;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -914,6 +926,7 @@ body.light-theme .master-tab-btn.active {
 
 .service-info h3 {
   font-size: 1.6rem;
+  font-weight: 600;
   color: var(--color-text-primary);
   margin-bottom: 0.4rem;
 }
@@ -924,7 +937,7 @@ body.light-theme .master-tab-btn.active {
   color: var(--color-accent-orange);
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 1.2rem;
 }
 
@@ -932,11 +945,12 @@ body.light-theme .master-tab-btn.active {
   font-size: 0.95rem;
   line-height: 1.6;
   margin-bottom: 1.5rem;
+  font-weight: 400;
 }
 
 .service-responsibilities h4 {
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-text-primary);
   margin-bottom: 0.75rem;
   text-transform: uppercase;
@@ -955,6 +969,7 @@ body.light-theme .master-tab-btn.active {
   display: flex;
   gap: 0.6rem;
   align-items: flex-start;
+  font-weight: 400;
 }
 
 .service-responsibilities li i {
@@ -996,7 +1011,7 @@ body.light-theme .master-tab-btn.active {
   border-radius: 4px;
   font-size: 0.7rem;
   color: var(--color-text-primary);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 @keyframes fadeIn {
@@ -1055,8 +1070,8 @@ table {
 }
 
 th {
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 0.95rem;
+  font-weight: 600;
   color: var(--color-text-primary);
   padding: 1.2rem;
   border-bottom: 2px solid var(--color-border-primary);
@@ -1071,6 +1086,7 @@ td {
   border-bottom: 1px solid var(--color-border-primary);
   font-size: 0.9rem;
   vertical-align: middle;
+  font-weight: 400;
 }
 
 tr:last-child td {
@@ -1078,7 +1094,7 @@ tr:last-child td {
 }
 
 .aspect-title {
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-text-primary);
   width: 18%;
 }
@@ -1180,7 +1196,7 @@ tr:hover td {
 .question-counter {
   font-size: 0.75rem;
   letter-spacing: 1px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-accent-orange);
   text-transform: uppercase;
   margin-bottom: 0.5rem;
@@ -1188,6 +1204,7 @@ tr:hover td {
 
 .question-text {
   font-size: 1.25rem;
+  font-weight: 600;
   color: var(--color-text-primary);
   margin-bottom: 2rem;
   line-height: 1.4;
@@ -1237,7 +1254,7 @@ tr:hover td {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 0.75rem;
   color: var(--color-text-secondary);
 }
@@ -1249,7 +1266,7 @@ tr:hover td {
 }
 
 .opt-label {
-  font-weight: 500;
+  font-weight: 400;
 }
 
 /* Results State */
@@ -1269,6 +1286,7 @@ tr:hover td {
 
 .result-header h3 {
   font-size: 1.4rem;
+  font-weight: 600;
 }
 
 .score-badge {
@@ -1279,7 +1297,7 @@ tr:hover td {
 
 .score-text {
   font-size: 3rem;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--color-accent-orange);
   line-height: 1;
 }
@@ -1288,6 +1306,7 @@ tr:hover td {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 1px;
+  font-weight: 500;
   color: var(--color-text-secondary);
 }
 
@@ -1309,7 +1328,7 @@ tr:hover td {
 
 .reality-highlights h4 {
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-accent-red);
   margin-bottom: 1rem;
   display: flex;
@@ -1326,12 +1345,14 @@ tr:hover td {
 .real-item h5 {
   color: var(--color-text-primary);
   font-size: 0.9rem;
+  font-weight: 600;
   margin-bottom: 0.2rem;
 }
 
 .real-item p {
   font-size: 0.8rem;
   line-height: 1.4;
+  font-weight: 400;
 }
 
 /* ==========================================
@@ -1360,6 +1381,7 @@ tr:hover td {
 
 .counselling-meta h4 {
   font-size: 1.1rem;
+  font-weight: 600;
   color: var(--color-text-primary);
   margin-bottom: 0.2rem;
 }
@@ -1389,7 +1411,7 @@ tr:hover td {
 
 .form-group label {
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 500;
   text-transform: uppercase;
   color: var(--color-text-secondary);
 }
@@ -1441,6 +1463,7 @@ tr:hover td {
 .booking-success-message h5 {
   color: var(--color-text-primary);
   font-size: 1.05rem;
+  font-weight: 600;
   margin-bottom: 0.25rem;
 }
 
@@ -1483,13 +1506,14 @@ tr:hover td {
   border-radius: 4px;
   font-size: 0.7rem;
   letter-spacing: 1px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-accent-red);
   margin-bottom: 1.2rem;
 }
 
 .reality-card h2 {
   font-size: 2rem;
+  font-weight: 600;
   margin-bottom: 1rem;
 }
 
@@ -1503,6 +1527,7 @@ tr:hover td {
   max-width: 850px;
   margin-bottom: 2.5rem;
   color: var(--color-text-primary);
+  font-weight: 400;
 }
 
 .reality-grid-large {
@@ -1543,6 +1568,7 @@ tr:hover td {
 
 .r-card h3 {
   font-size: 1.05rem;
+  font-weight: 600;
   color: var(--color-text-primary);
   margin-bottom: 0.4rem;
 }
@@ -1550,6 +1576,7 @@ tr:hover td {
 .r-card p {
   font-size: 0.85rem;
   line-height: 1.5;
+  font-weight: 400;
 }
 
 /* ==========================================
@@ -1572,13 +1599,14 @@ tr:hover td {
 
 .cta-subtitle {
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 1px;
   color: var(--color-accent-orange);
 }
 
 .cta-container h2 {
   font-size: 2.2rem;
+  font-weight: 600;
   color: var(--color-text-primary);
 }
 
@@ -1586,6 +1614,7 @@ tr:hover td {
   font-size: 1.05rem;
   max-width: 650px;
   line-height: 1.6;
+  font-weight: 400;
 }
 
 .cta-divider {
@@ -1597,7 +1626,7 @@ tr:hover td {
 }
 
 .cta-question {
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-text-primary) !important;
 }
 
@@ -1629,7 +1658,7 @@ footer {
   align-items: center;
   gap: 0.5rem;
   font-size: 1.2rem;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--color-accent-orange);
 }
 
@@ -1686,7 +1715,7 @@ footer p {
     color: #ffffff !important;
     padding: 0.45rem 1rem;
     font-size: 0.75rem;
-    font-weight: 800;
+    font-weight: 600;
     border-radius: 9999px;
     margin-right: 0.5rem;
     transition: all 0.25s ease;
@@ -1813,7 +1842,7 @@ footer p {
     justify-content: center;
     color: var(--color-text-secondary);
     font-size: 0.65rem;
-    font-weight: 700;
+    font-weight: 500;
     text-decoration: none;
     width: 60px;
     height: 100%;
@@ -2059,12 +2088,12 @@ footer p {
 
   .upsc-col::before {
     content: "Civil Services: ";
-    font-weight: 700;
+    font-weight: 600;
   }
 
   .conv-col::before {
     content: "Conventional: ";
-    font-weight: 700;
+    font-weight: 600;
     color: var(--color-text-secondary);
   }
 }
@@ -2117,7 +2146,7 @@ footer p {
   padding: 0.6rem 1.4rem;
   border-radius: 50px;
   font-size: 1.3rem;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--color-accent-orange);
   font-family: var(--font-body);
   box-shadow: 0 4px 15px rgba(255, 107, 0, 0.15);
@@ -2192,7 +2221,7 @@ footer p {
 
 .score-dial-content .score-text {
   font-size: 2.2rem;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--color-text-primary);
   line-height: 1.1;
   margin-bottom: 0.1rem;
@@ -2202,7 +2231,7 @@ footer p {
 .score-dial-content .score-label {
   font-size: 0.52rem;
   text-transform: uppercase;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: 0.5px;
   color: var(--color-text-secondary);
   white-space: nowrap;
@@ -2250,7 +2279,7 @@ footer p {
 
 .phone-prefix {
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--color-text-secondary);
   padding-left: 1rem;
   padding-right: 0.5rem;
@@ -2299,7 +2328,7 @@ footer p {
 
 .rushed-warning-box h5 {
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 600;
   margin-top: 0;
   margin-bottom: 0.5rem;
   display: flex;
